@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Your Account - Children Therapy Center</title>
+  <style>
+    /* RESET & GLOBAL STYLES */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    }
+    body {
+      background: #f2f2f2;
+      color: #444;
+      line-height: 1.6;
+    }
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    /* HEADER / NAVIGATION */
+    header {
+      width: 100%;
+      background-color: #37517e;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+    .nav-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 70px;
+    }
+    .nav-logo {
+      color: #fff;
+      font-size: 1.5rem;
+      font-weight: bold;
+    }
+    .nav-menu {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+    .nav-menu a {
+      color: #fff;
+      font-size: 1rem;
+      transition: color 0.3s;
+    }
+    .nav-menu a:hover {
+      color: #47b2e4;
+    }
+    .cta-btn {
+      background-color: #47b2e4;
+      padding: 8px 16px;
+      border-radius: 4px;
+      color: #fff;
+      font-weight: 600;
+      transition: background-color 0.3s;
+    }
+    .cta-btn:hover {
+      background-color: #1e86c8;
+    }
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      cursor: pointer;
+      gap: 4px;
+    }
+    .hamburger span {
+      width: 25px;
+      height: 3px;
+      background-color: #fff;
+      border-radius: 2px;
+    }
+    .mobile-menu {
+      display: none;
+      flex-direction: column;
+      background-color: #37517e;
+      position: absolute;
+      top: 70px;
+      right: 0;
+      width: 200px;
+      padding: 10px;
+    }
+    .mobile-menu a {
+      color: #fff;
+      padding: 10px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.2);
+    }
+    .mobile-menu a:last-child {
+      border-bottom: none;
+    }
+
+    /* MAIN CONTENT CONTAINER */
+    .account-container {
+      max-width: 1200px;
+      margin: 80px auto 40px;
+      padding: 20px;
+      background: #fff;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    .section {
+      margin-bottom: 40px;
+      padding: 0 20px;
+    }
+    .section h2 {
+      font-size: 1.8rem;
+      color: #37517e;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+    
+    /* PROFILE SECTION */
+    .profile {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+    .profile img {
+      border-radius: 50%;
+      width: 150px;
+      height: 150px;
+    }
+    .profile-info {
+      max-width: 600px;
+    }
+    .profile-info p {
+      font-size: 1.1rem;
+      color: #555;
+    }
+    
+    /* PROGRESS SECTION */
+    .progress-section {
+      text-align: center;
+    }
+    .progress-bar {
+      width: 80%;
+      max-width: 600px;
+      height: 25px;
+      background: #ddd;
+      border-radius: 20px;
+      margin: 0 auto 10px;
+      overflow: hidden;
+    }
+    .progress-bar-inner {
+      height: 100%;
+      background: #47b2e4;
+      width: 0;
+      border-radius: 20px;
+      transition: width 0.5s ease-in-out;
+    }
+    .progress-text {
+      font-size: 1.1rem;
+      color: #555;
+    }
+    
+    /* HISTORY & APPOINTMENTS */
+    .list {
+      max-width: 800px;
+      margin: 0 auto;
+      text-align: left;
+    }
+    .list-item {
+      background: #f8f9fa;
+      border-radius: 4px;
+      padding: 10px 15px;
+      margin-bottom: 10px;
+      box-shadow: 0 0 5px rgba(0,0,0,0.05);
+    }
+    .list-item span {
+      font-weight: bold;
+      color: #37517e;
+    }
+    
+    /* LOGIN/LOGOUT SECTION */
+    .auth-section {
+      text-align: center;
+      margin-top: 20px;
+    }
+    .auth-section button {
+      background-color: #47b2e4;
+      color: #fff;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 4px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+    .auth-section button:hover {
+      background-color: #1e86c8;
+    }
+    
+    /* FOOTER */
+    footer {
+      background-color: #2e4462;
+      color: #fff;
+      padding: 30px 20px;
+      margin-top: 40px;
+    }
+    .footer-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 40px;
+      justify-content: space-between;
+    }
+    .footer-col {
+      flex: 1;
+      min-width: 250px;
+    }
+    .footer-col h4 {
+      margin-bottom: 15px;
+      font-size: 1.1rem;
+      color: #47b2e4;
+    }
+    .footer-col a {
+      display: block;
+      margin-bottom: 5px;
+      font-size: 0.95rem;
+      color: #fff;
+      transition: color 0.3s;
+    }
+    .footer-col a:hover {
+      color: #c2d4ec;
+    }
+    .footer-bottom {
+      text-align: center;
+      margin-top: 30px;
+      font-size: 0.85rem;
+      color: #ddd;
+    }
+    
+    /* MEDIA QUERIES */
+    @media (max-width: 768px) {
+      .nav-container, .footer-content {
+        padding: 0 15px;
+      }
+      .profile {
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- HEADER / NAVIGATION -->
+  <header>
+    <div class="nav-container">
+      <div class="nav-logo">TherapyCenter</div>
+      <nav class="nav-menu">
+        <a href="index.html">Home</a>
+        <a href="aboutUs.html">About Us</a>
+        <a href="services.html">Services</a>
+        <a href="testimonials.html">Testimonials</a>
+        <a href="contact.html">Contact</a>
+        
+        <a href="account.html" class="cta-btn">Your Account</a>
+      </nav>
+      <div class="hamburger" onclick="toggleMobileMenu()">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+    <div id="mobileMenu" class="mobile-menu">
+      <a href="index.html">Home</a>
+      <a href="aboutUs.html">About Us</a>
+      <a href="services.html">Services</a>
+      <a href="testimonials.html">Testimonials</a>
+      <a href="contact.html">Contact</a>
+      
+      <a href="account.html" >Your Account</a>
+    </div>
+  </header>
+  
+  <!-- MAIN ACCOUNT CONTENT -->
+  <div class="account-container">
+    <!-- Login/Logout Section -->
+    <section class="auth-section">
+      <button id="authButton" onclick="toggleAuth()">
+        <a href="login.html">Log in</a>
+      </button>
+    </section>
+    
+    <!-- Profile Section -->
+    <section class="section profile-section">
+      <h2>Child Profile</h2>
+      <div class="profile">
+        <img src="https://via.placeholder.com/150.png?text=Child+Photo" alt="Child Photo">
+        <div class="profile-info">
+          <h3 id="childName">Alex Johnson</h3>
+          <p><span>Age:</span> 7 years</p>
+          <p><span>Diagnosis:</span> Speech Delay & Behavioral Challenges</p>
+        </div>
+      </div>
+    </section>
+    
+    <!-- Progress Section -->
+    <section class="section progress-section">
+      <h2>Progress</h2>
+      <div class="progress-bar">
+        <div class="progress-bar-inner" id="progressBar" style="width: 60%;"></div>
+      </div>
+      <div class="progress-text">
+        60% of therapy goals achieved
+      </div>
+    </section>
+    
+    <!-- Session History Section -->
+    <section class="section history-section">
+      <h2>Session History</h2>
+      <div class="list">
+        <div class="list-item">
+          <span>Date:</span> 01/15/2025 – <span>Session:</span> Speech Therapy
+        </div>
+        <div class="list-item">
+          <span>Date:</span> 01/22/2025 – <span>Session:</span> Behavioral Therapy
+        </div>
+        <div class="list-item">
+          <span>Date:</span> 01/29/2025 – <span>Session:</span> Combined Therapy
+        </div>
+      </div>
+    </section>
+    
+    <!-- Upcoming Appointments Section -->
+    <section class="section appointments-section">
+      <h2>Upcoming Appointments</h2>
+      <div class="list">
+        <div class="list-item">
+          <span>Date:</span> 02/05/2025 – <span>Time:</span> 10:00 AM – Speech Therapy
+        </div>
+        <div class="list-item">
+          <span>Date:</span> 02/12/2025 – <span>Time:</span> 02:00 PM – Behavioral Therapy
+        </div>
+      </div>
+    </section>
+  </div>
+  
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-content">
+      <div class="footer-col">
+        <h4>Contact Us</h4>
+        <p>1234 Therapy Avenue,<br>City, State 12345</p>
+        <p>Phone: (123) 456-7890<br>Email: info@therapycenter.com</p>
+      </div>
+      <div class="footer-col">
+        <h4>Quick Links</h4>
+        <a href="index.html">Home</a>
+        <a href="about.html">About Us</a>
+        <a href="services.html">Services</a>
+        <a href="testimonials.html">Testimonials</a>
+        <a href="contact.html">Contact</a>
+      </div>
+      <div class="footer-col">
+        <h4>Follow Us</h4>
+        <a href="#">Facebook</a>
+        <a href="#">Instagram</a>
+        <a href="#">Twitter</a>
+      </div>
+      <div class="footer-col">
+        <h4>Legal</h4>
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms &amp; Conditions</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      &copy; 2025 Children Therapy Center. All rights reserved.
+    </div>
+  </footer>
+  
+  <script>
+    // Dummy login state variable
+    let loggedIn = false;
+    
+    // Toggle login/logout and update the button text accordingly
+    function toggleAuth() {
+      loggedIn = !loggedIn;
+      const authButton = document.getElementById("authButton");
+      if (loggedIn) {
+        authButton.textContent = "Log Out";
+        // Here, you can load real account data, etc.
+      } else {
+        authButton.textContent = "Log In";
+        // Optionally, redirect to a login form or clear account data
+      }
+    }
+    
+    // Toggle mobile menu
+    function toggleMobileMenu() {
+      const mobileMenu = document.getElementById("mobileMenu");
+      mobileMenu.style.display = mobileMenu.style.display === "flex" ? "none" : "flex";
+    }
+  </script>
+</body>
+</html>
